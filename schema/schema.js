@@ -1,5 +1,6 @@
-const {GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLFloat, GraphQLSchema} = require("graphql");
+const {GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLFloat, GraphQLSchema, GraphQLScalarType, Kind} = require("graphql");
 const { db } = require("../model/Player");
+const { GraphQLDate} = require("graphql-iso-date");
 
 const Player = require("../model/Player")
 const Team = require("../model/Team");
@@ -14,7 +15,7 @@ const PlayerType = new GraphQLObjectType({
         country:{type: GraphQLString},
         salary:{type: GraphQLInt},  
         height:{type: GraphQLFloat},
-        brithDate:{type: GraphQLString},
+        brithDate:{type: GraphQLDate},
         logo:{type: GraphQLString},
         coverImage:{type: GraphQLString},
         teamId:{type: GraphQLID},
@@ -51,7 +52,7 @@ const TeamType = new GraphQLObjectType({
                 })
             }
         },
-        establish: {type: GraphQLString},
+        establish: {type: GraphQLDate},
         logo: {type: GraphQLString},
         coverImage: {type: GraphQLString}, 
         players:{
@@ -110,7 +111,7 @@ const Mutation = new GraphQLObjectType({
                 name: {type: GraphQLNonNull(GraphQLString)},
                 about: {type: GraphQLNonNull(GraphQLString)},
                 totalCost: {type: GraphQLNonNull(GraphQLInt)},
-                establish: {type: GraphQLNonNull(GraphQLString)},
+                establish: {type: GraphQLNonNull(GraphQLDate)},
                 logo: {type: GraphQLNonNull(GraphQLString)},
                 coverImage: {type: GraphQLNonNull(GraphQLString)},
             },
@@ -134,7 +135,7 @@ const Mutation = new GraphQLObjectType({
                 id:{type: GraphQLNonNull(GraphQLID)},
                 name: {type: GraphQLString},
                 about: {type: GraphQLString},
-                establish: {type: GraphQLString},
+                establish: {type: GraphQLDate},
                 logo: {type: GraphQLString},
                 coverImage: {type: GraphQLString},
             },
@@ -179,7 +180,7 @@ const Mutation = new GraphQLObjectType({
                 country: {type: GraphQLNonNull(GraphQLString)},
                 height: {type: GraphQLNonNull(GraphQLFloat)},
                 salary:{type: GraphQLNonNull(GraphQLInt)},
-                brithDate: {type: GraphQLNonNull(GraphQLString)},
+                brithDate: {type: GraphQLNonNull(GraphQLDate)},
                 teamId:{type:GraphQLNonNull(GraphQLID)},
                 logo: {type: GraphQLNonNull(GraphQLString)},
                 coverImage: {type: GraphQLNonNull(GraphQLString)},
@@ -210,7 +211,7 @@ const Mutation = new GraphQLObjectType({
                 country: {type: GraphQLString},
                 height: {type: GraphQLFloat},
                 salary:{type: GraphQLInt},
-                brithDate: {type: GraphQLString},
+                brithDate: {type: GraphQLDate},
                 teamId:{type:GraphQLID},
                 logo: {type: GraphQLString},
                 coverImage: {type: GraphQLString},
